@@ -30,6 +30,7 @@ if __name__ == "__main__":
     parser.add_argument("--logging_dir", type=str, default=os.path.join(os.environ["SM_MODEL_DIR"], "logs"))
     parser.add_argument("--strategy", type=str, default="steps")
     parser.add_argument("--steps", type=int, default=5000)
+    parser.add_argument("--eval_steps", type=int, default=5000)
     parser.add_argument("--save_total_limit", type=int, default=2)
     parser.add_argument("--load_best_model_at_end", type=bool, default=True)
     parser.add_argument("--metric_for_best_model", type=str, default="f1")
@@ -96,7 +97,7 @@ if __name__ == "__main__":
         logging_strategy=args.strategy,  # to get more information to TB
         logging_steps=args.steps,  # to get more information to TB
         evaluation_strategy=args.strategy,
-        eval_steps=args.steps,
+        eval_steps=args.eval_steps,
         save_strategy=args.strategy,
         save_steps=args.steps,
         save_total_limit=args.save_total_limit,
